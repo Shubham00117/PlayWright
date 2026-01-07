@@ -10,15 +10,12 @@ const loginData: any[] = XLSX.utils.sheet_to_json(worksheet);
 
 test.describe("Login data driven test", () => {
   loginData.forEach(({ Email, Password, Validity }, index) => {
-
     const email = (Email ?? "").toString().trim();
     const password = (Password ?? "").toString().trim();
     const validity = (Validity ?? "").toString().trim().toLowerCase();
 
-    test(
-      `TC_${index + 1} | Login test with ${email || "empty"} and ${password || "empty"}`,
-      async ({ page }) => {
-
+    test(`TC_${index + 1} | Login test with ${email || "empty"} and ${password || "empty"
+      }`, async ({ page }) => {
         await page.goto("https://demowebshop.tricentis.com/login");
 
         await page.locator("#Email").fill(email);
@@ -29,10 +26,7 @@ test.describe("Login data driven test", () => {
         const errorMessage = page.locator(".validation-summary-errors");
         await expect(errorMessage).toBeVisible({ timeout: 5000 });
 
-        await expect(page).toHaveURL(
-          "https://demowebshop.tricentis.com/login"
-        );
-      }
-    );
+        await expect(page).toHaveURL("https://demowebshop.tricentis.com/login");
+      });
   });
 });
