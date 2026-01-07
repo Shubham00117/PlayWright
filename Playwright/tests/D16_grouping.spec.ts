@@ -21,6 +21,6 @@ test.describe("Group 2", async () => {
   })
   test("Test4", () => {
 
-    console.log("Test 2")
+    console.log("Test 4")
   })
 })
