@@ -1,68 +1,174 @@
+// Import Playwright configuration helpers and predefined device profiles
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
+ * ============================
+ * Environment Variable Setup
+ * ============================
+ * Used when you want to load environment variables from a .env file
+ * (Currently commented out)
  */
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
- * See https://playwright.dev/docs/test-configuration.
+ * ============================
+ * Playwright Test Configuration
+ * ============================
+ * Official docs: https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: "./tests",
-  // Maximum time allowed for a single test to complete (in milliseconds) global timeout for entire project 
-  // timeout: 60000,
 
-  // Maximum time expect() assertions will retry before failing
+  /**
+   * ----------------------------
+   * Test Directory Configuration
+   * ----------------------------
+   * Defines where test files are located
+   */
+  testDir: "./tests",
+
+  /**
+   * ----------------------------
+   * Global Test Timeout Settings
+   * ----------------------------
+   * Maximum time allowed for a single test to complete
+   * (Commented – can be enabled if needed)
+   */
+  // timeout: 20000,
+
+  /**
+   * ----------------------------
+   * Expect Assertion Timeout
+   * ----------------------------
+   * Controls retry duration for expect() assertions
+   */
   // expect: {
-  //   // timeout: 60000
+  //   // timeout: 10000
   // },
-  /* Run tests in files in parallel */
-  fullyParallel: false,//set false run test case in serial.
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  // retries: process.env.CI ? 2 : 0,
-  //retry locally
-  // retries: 3,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+
+  /**
+   * ----------------------------
+   * Parallel Execution Control
+   * ----------------------------
+   * false → run test cases in serial
+   * true  → allow parallel execution
+   */
+  fullyParallel: false, // set false run test case in serial
+
+  /**
+   * ----------------------------
+   * CI Safety Check
+   * ----------------------------
+   * Prevents accidental test.only from being committed
+   */
+  // forbidOnly: !!process.env.CI,
+
+  /**
+   * ----------------------------
+   * Retry Configuration
+   * ----------------------------
+   * Retry logic for CI and local execution
+   */
+  // retries: process.env.CI ? 2 : 0, // retry on CI
+  // retries: 3, // retry locally
+
+  /**
+   * ----------------------------
+   * Worker Configuration
+   * ----------------------------
+   * Number of parallel workers for local execution
+   */
+  // workers: process.env.CI ? 1 : undefined,
+  workers: 1, // local worker count
+
+  /**
+   * ----------------------------
+   * Reporter Configuration
+   * ----------------------------
+   * Generates HTML report after execution
+   */
   reporter: "html",
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+
+  /**
+   * ----------------------------
+   * Shared Test Options
+   * ----------------------------
+   * Applied to all projects and tests
+   */
   use: {
 
-    screenshot: 'only-on-failure',//capture screenshot
-    video: 'retain-on-failure',//record video
-    /* Base URL to use in actions like `await page.goto('')`. */
+    /**
+     * Screenshot & Video Settings
+     * (Commented – enable when needed)
+     */
+    // screenshot: 'only-on-failure',
+    // video: 'retain-on-failure',
+
+    /**
+     * Base URL Configuration
+     * Used for page.goto() shortcuts
+     */
     // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /**
+     * Trace Configuration
+     * Controls Playwright tracing
+     */
     trace: 'off',
-    testIdAttribute: "pwd-name", //configured-data-set if not found in first retry automtically as id used this name and code executed
+
+    /**
+     * Test ID Attribute
+     * Used to locate elements via custom data attribute
+     */
+    testIdAttribute: "pwd-name",
+    // configured-data-set if not found in first retry automatically uses this attribute
   },
 
-  /* Configure projects for major browsers */
+  /**
+   * ============================
+   * Browser Projects Configuration
+   * ============================
+   * Defines which browsers/devices tests will run on
+   */
   projects: [
+
+    /**
+     * ----------------------------
+     * Chromium Desktop Browser
+     * ----------------------------
+     */
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
+      // fullyParallel: true, // browser-specific parallel setting
     },
 
+    /**
+     * ----------------------------
+     * Firefox Browser (Disabled)
+     * ----------------------------
+     */
     // {
     //   name: "firefox",
     //   use: { ...devices["Desktop Firefox"] },
     // },
 
+    /**
+     * ----------------------------
+     * WebKit / Safari (Disabled)
+     * ----------------------------
+     */
     // {
     //   name: "webkit",
     //   use: { ...devices["Desktop Safari"] },
     // },
 
-    /* Test against mobile viewports. */
+    /**
+     * ----------------------------
+     * Mobile Viewports (Disabled)
+     * ----------------------------
+     */
     // {
     //   name: 'Mobile Chrome',
     //   use: { ...devices['Pixel 5'] },
@@ -72,7 +178,11 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
+    /**
+     * ----------------------------
+     * Branded Browsers (Disabled)
+     * ----------------------------
+     */
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
@@ -83,7 +193,12 @@ export default defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the tests */
+  /**
+   * ============================
+   * Local Dev Server Configuration
+   * ============================
+   * Used when app needs to be started before tests
+   */
   // webServer: {
   //   command: 'npm run start',
   //   url: 'http://localhost:3000',
