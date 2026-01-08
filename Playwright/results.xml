@@ -1,0 +1,42 @@
+<testsuites id="" name="" tests="3" failures="1" skipped="0" errors="0" time="8.63857">
+<testsuite name="D19_reporters.spec.ts" timestamp="2026-01-08T05:12:59.667Z" hostname="chromium" tests="3" failures="1" skipped="0" time="13.864" errors="0">
+<testcase name="Test 1 Verify Title" classname="D19_reporters.spec.ts" time="2.703">
+</testcase>
+<testcase name="Test 2 Verify logo" classname="D19_reporters.spec.ts" time="7.734">
+<failure message="D19_reporters.spec.ts:58:5 Test 2 Verify logo" type="FAILURE">
+<![CDATA[  [chromium] › D19_reporters.spec.ts:58:5 › Test 2 Verify logo ─────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('img', { name: 'Tricentis Demo Web Shops' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('img', { name: 'Tricentis Demo Web Shops' })
+
+
+      59 |   const logo: Locator = page.getByRole('img', { name: 'Tricentis Demo Web Shops' })
+      60 |
+    > 61 |   await expect(logo).toBeVisible();
+         |                      ^
+      62 |
+      63 | });
+      64 |
+        at /Users/shubham_infinity/Desktop/Software_Testing/Playwright/Coding/Playwright/tests/D19_reporters.spec.ts:61:22
+
+    Error Context: ../test-results/D19_reporters-Test-2-Verify-logo-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/D19_reporters-Test-2-Verify-logo-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Test 3 Search Product" classname="D19_reporters.spec.ts" time="3.427">
+</testcase>
+</testsuite>
+</testsuites>

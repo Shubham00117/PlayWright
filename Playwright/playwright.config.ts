@@ -54,7 +54,7 @@ export default defineConfig({
    * false → run test cases in serial
    * true  → allow parallel execution
    */
-  fullyParallel: false, // set false run test case in serial
+  fullyParallel: true, // set false run test case in serial
 
   /**
    * ----------------------------
@@ -80,15 +80,74 @@ export default defineConfig({
    * Number of parallel workers for local execution
    */
   // workers: process.env.CI ? 1 : undefined,
-  workers: 1, // local worker count
+  workers: 3, // local worker count
 
   /**
-   * ----------------------------
-   * Reporter Configuration
-   * ----------------------------
-   * Generates HTML report after execution
-   */
-  reporter: "html",
+  * ======================
+  * REPORTER CONFIGURATION
+  * ======================
+  * Uncomment ONE section only
+  */
+
+  /* ----------------------
+   * HTML REPORT (Default)
+   * ---------------------- */
+  reporter: 'html',
+
+  /* ----------------------
+   * ALLURE REPORT
+   * ---------------------- */
+  // reporter: 'allure-playwright',
+
+  /* ----------------------
+   * HTML + CUSTOM REPORTER
+   * ---------------------- */
+  // reporter: [
+  //   ['html'],
+  //   ['./custom-reporter'],
+  // ],
+
+  /* ----------------------
+   * HTML (AUTO OPEN)
+   * ---------------------- */
+  // reporter: [
+  //   ['html', { open: 'always', outputFolder: 'html-report' }],
+  // ],
+
+  /* ----------------------
+   * LIST REPORT
+   * ---------------------- */
+  // reporter: [
+  //   ['list'],
+  // ],
+
+  /* ----------------------
+   * LINE REPORT
+   * ---------------------- */
+  // reporter: [
+  //   ['line'],
+  // ],
+
+  /* ----------------------
+   * DOT REPORT
+   * ---------------------- */
+  // reporter: [
+  //   ['dot'],
+  // ],
+
+  /* ----------------------
+   * JUNIT XML (CI/CD)
+   * ---------------------- */
+  // reporter: [
+  //   ['junit', { outputFile: 'results.xml' }],
+  // ],
+
+  /* ----------------------
+   * JSON REPORT
+   * ---------------------- */
+  // reporter: [
+  //   ['json', { outputFile: 'results.json' }],
+  // ],
 
   /**
    * ----------------------------

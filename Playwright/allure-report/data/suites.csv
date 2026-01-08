@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2899","Test 1 Verify Title","chromium","2026-01-08","passed","2026-01-08","","D19_reporters.spec.ts","",""
+"","7929","Test 2 Verify logo","chromium","2026-01-08","failed","2026-01-08","","D19_reporters.spec.ts","",""
+"","3619","Test 3 Search Product","chromium","2026-01-08","passed","2026-01-08","","D19_reporters.spec.ts","",""
